@@ -72,6 +72,8 @@ workflows:
               only: /.*/
 
       - deploy-develop:
+          requires:
+            - build
           filters:
             branches:
               only: develop
