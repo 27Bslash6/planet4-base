@@ -2,6 +2,7 @@ defaults: &defaults
   environment:
     GOOGLE_PROJECT_ID: planet-4-151612
     INFRA_VERSION: develop
+    CONTAINER_PREFEX: planet4-base
     BUILD_FLAGS: -r
   docker:
     - image: gcr.io/planet-4-151612/p4-builder:develop
@@ -14,6 +15,11 @@ jobs:
     <<: *defaults
     steps:
       - setup_remote_docker
+
+      - run:
+          name: Configure gcloud
+          command: |
+            ${HOME}/scripts/activate-gcloud-account.sh
 
       - run:
           name: Build application
@@ -39,10 +45,7 @@ jobs:
       #
       # - setup_remote_docker
       #
-      # - run:
-      #     name: Configure gcloud
-      #     command: |
-      #       ${HOME}/scripts/activate-gcloud-account.sh
+
 
       # - run:
       #     name: Configure gcloud
@@ -63,6 +66,7 @@ workflows:
   build-test-and-deploy:
     jobs:
       - build:
+          context: org-default
           filters:
             branches:
               only: /.*/
