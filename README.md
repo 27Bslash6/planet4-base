@@ -1,6 +1,6 @@
 # Greenpeace Planet 4
 
- [![CircleCI](https://circleci.com/gh/greenpeace/planet4-base/tree/develop.svg?style=shield)](https://circleci.com/gh/greenpeace/planet4-docker/tree/develop)
+ [![CircleCI](https://circleci.com/gh/greenpeace/planet4-base/tree/master.svg?style=shield)](https://circleci.com/gh/greenpeace/planet4-docker/tree/master)
 
 Testing.
 
@@ -21,9 +21,9 @@ All dependencies should be managed by [Composer](http://getcomposer.org).
 The same repository handles all the different Planet4 sites. This happens by having
 - everything common in the /composer.json file
 - everything site specific in a subdirectory app/project/site/composer.json file
-(where project is the name of the Google Cloud Project and "site" is one of "develop", "staging") 
+(where project is the name of the Google Cloud Project and "site" is one of "master", "staging")
 
-The composer plugin [composer merge](https://packagist.org/packages/wikimedia/composer-merge-plugin) handles the combining of the two composer.json files 
+The composer plugin [composer merge](https://packagist.org/packages/wikimedia/composer-merge-plugin) handles the combining of the two composer.json files
 
 To tell composer which file to use, the first command you need to run is the following:
 ```

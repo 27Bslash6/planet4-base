@@ -42,7 +42,7 @@
 			"vendor/themes/{$name}/": ["type:wordpress-theme"]
 		},
 		"merge-plugin": {
-			"require": "app/planet-4-151612/develop/composer.json",
+			"require": "",
 			"recurse": true,
 			"replace": true,
 			"ignore-duplicates": false,
@@ -87,7 +87,6 @@
 		"reset:plugins" : "rm -rf public/wp-content/plugins",
 
 		"download:wordpress": "wp core download --version=4.9.5 --path=public --force",
-		"copy:health-check" : "rsync -ar health_db.php public/health_db.php; rsync -ar health_php.php public/health_php.php; rsync -ar health_redis.php public/health_redis.php",
 		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
 		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
