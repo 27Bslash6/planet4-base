@@ -18,11 +18,6 @@ jobs:
       - setup_remote_docker
 
       - run:
-          name: Configure gcloud
-          command: |
-            ${HOME}/scripts/activate-gcloud-account.sh
-
-      - run:
           name: Build application
           working_directory: /home/circleci
           command: |
@@ -56,6 +51,11 @@ jobs:
       #       ${HOME}/scripts/activate-gcloud-account.sh
 
       - run:
+          name: Configure gcloud
+          command: |
+            ${HOME}/scripts/activate-gcloud-account.sh
+
+      - run:
           name: Build production
           command: |
             echo "@todo Update dependent repositories with new base master release"
@@ -64,13 +64,14 @@ jobs:
             echo " - p4-handbook"
             echo "Commit changes to new tag"
 
-
 workflows:
   version: 2
   build-test-and-deploy:
     jobs:
       - build:
           filters:
+            branches:
+              only: /.*/
             tags:
               only: /.*/
 
@@ -78,6 +79,7 @@ workflows:
           branches:
             only:
               - develop
+
       # - test:
       #     requires:
       #       - build
@@ -85,12 +87,14 @@ workflows:
       #       tags:
       #         only: /.*/
       # Only run deploy job for tagged releases on master
+
       - hold-production:
           type: approval
           requires:
             - build
 
       - deploy-production:
+          context: org-global
           requires:
             - hold-production
           filters:
