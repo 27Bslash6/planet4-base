@@ -5,7 +5,7 @@ defaults: &defaults
     BUILD_FLAGS: -r
   docker:
     - image: gcr.io/planet-4-151612/p4-builder:develop
-  working_directory:  /home/circleci/build/source
+  working_directory:  /home/circleci/
 
 version: 2
 
@@ -13,8 +13,6 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - checkout
-
       - setup_remote_docker
 
       - run:
