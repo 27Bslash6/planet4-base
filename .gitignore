@@ -2,6 +2,7 @@ Dockerfile
 plugins
 themes
 vendor
+secrets
 .idea
 wp-cli.yml
 .DS_Store

@@ -66,7 +66,7 @@ workflows:
   build-test-and-deploy:
     jobs:
       - build:
-          context: org-default
+          context: org-global
           filters:
             branches:
               only: /.*/
