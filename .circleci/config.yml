@@ -36,10 +36,6 @@ jobs:
 
   deploy-develop:
     <<: *defaults
-    environment:
-      GOOGLE_PROJECT_ID: planet-4-151612
-      BUILD_FLAGS: -r
-      BUILD_ENVIRONMENT: production
     steps:
       # - checkout
       #
@@ -50,10 +46,10 @@ jobs:
       #     command: |
       #       ${HOME}/scripts/activate-gcloud-account.sh
 
-      - run:
-          name: Configure gcloud
-          command: |
-            ${HOME}/scripts/activate-gcloud-account.sh
+      # - run:
+      #     name: Configure gcloud
+      #     command: |
+      #       ${HOME}/scripts/activate-gcloud-account.sh
 
       - run:
           name: Build production
@@ -76,9 +72,9 @@ workflows:
               only: /.*/
 
       - deploy-develop:
-          branches:
-            only:
-              - develop
+          filters:
+            branches:
+              only: develop
 
       # - test:
       #     requires:
