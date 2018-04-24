@@ -1,7 +1,7 @@
 defaults: &defaults
   environment:
     GOOGLE_PROJECT_ID: planet-4-151612
-    INFRA_VERSION: develop
+    INFRA_VERSION: v0.7.1
     CONTAINER_PREFIX: planet4-base
     BUILD_FLAGS: -r
   docker:
