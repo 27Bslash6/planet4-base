@@ -65,7 +65,7 @@ jobs:
       - run:
           name: Deploy new containers
           environment:
-            NEWRELIC_APPNAME: P4 Base Development
+            NEWRELIC_APPNAME: P4 Base Developments
           command: |
             if [[ -z "${CIRCLE_TAG}" ]]
             then
