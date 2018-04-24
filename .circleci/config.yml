@@ -56,19 +56,21 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
 
-      # - run:
-      #     name: Configure gcloud
-      #     command: |
-      #       ${HOME}/scripts/activate-gcloud-account.sh
+      - run:
+          name: Configure
+          command: |
+            ${HOME}/scripts/activate-gcloud-account.sh
 
       - run:
-          name: Build production
+          name: Deploy new containers
+          environment:
+            APP_HOSTPATH: ""
+            NEWRELIC_APPNAME: P4 Base Development
           command: |
-            echo "@todo Update dependent repositories with new base master release"
-            echo " - planet4-gpi"
-            echo " - planet4-gp-greece"
-            echo " - p4-handbook"
-            echo "Commit changes to new tag"
+            PHP_IMAGE=$(cat /tmp/workspace/var/circle-build-num) \
+            OPENRESTY_IMAGE=$(cat /tmp/workspace/var/circle-build-num) \
+            make deploy
+
 
 workflows:
   version: 2
