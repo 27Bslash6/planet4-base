@@ -67,7 +67,12 @@ jobs:
             APP_HOSTPATH: ""
             NEWRELIC_APPNAME: P4 Base Development
           command: |
-            BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num) \
+            if [[ -z "${CIRCLE_TAG}" ]]
+            then
+              export BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num)
+            else
+              export BUILD_TAG=${CIRCLE_TAG}
+            fi
             make deploy
 
 
