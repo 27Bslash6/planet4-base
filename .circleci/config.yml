@@ -102,6 +102,9 @@ workflows:
 
       - hold-production:
           type: approval
+          filters:
+            tags:
+              only: /v.*/
           requires:
             - build
 
