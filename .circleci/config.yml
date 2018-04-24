@@ -17,14 +17,14 @@ jobs:
       - setup_remote_docker
 
       - run:
-          name: Configure gcloud
+          name: Configure
           command: |
             ${HOME}/scripts/activate-gcloud-account.sh
             mkdir -p /tmp/workspace/var
             echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
 
       - run:
-          name: Build application
+          name: Build
           working_directory: /home/circleci
           command: |
             make
