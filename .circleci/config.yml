@@ -64,7 +64,7 @@ jobs:
       - run:
           name: Deploy new containers
           environment:
-            APP_HOSTPATH: ""
+            APP_HOSTPATH: base
             NEWRELIC_APPNAME: P4 Base Development
           command: |
             if [[ -z "${CIRCLE_TAG}" ]]
@@ -101,7 +101,7 @@ workflows:
       #       tags:
       #         only: /.*/
       # Only run deploy job for tagged releases on master
-      
+
   tag:
     jobs:
       - build:
