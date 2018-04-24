@@ -78,15 +78,13 @@ jobs:
 
 workflows:
   version: 2
-  build-test-and-deploy:
+  branch:
     jobs:
       - build:
           context: org-global
           filters:
-            branches:
-              only: /.*/
             tags:
-              only: /.*/
+              ignore: /^v.*/
 
       - deploy-develop:
           context: p4-base
@@ -103,12 +101,24 @@ workflows:
       #       tags:
       #         only: /.*/
       # Only run deploy job for tagged releases on master
+      
+  tag:
+    jobs:
+      - build:
+          context: org-global
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
 
       - hold-production:
           type: approval
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /v.*/
+              only: /^v.*/
           requires:
             - build
 
@@ -117,5 +127,7 @@ workflows:
           requires:
             - hold-production
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /v.*/
+              only: /^v.*/
