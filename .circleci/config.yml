@@ -67,8 +67,7 @@ jobs:
             APP_HOSTPATH: ""
             NEWRELIC_APPNAME: P4 Base Development
           command: |
-            PHP_IMAGE=$(cat /tmp/workspace/var/circle-build-num) \
-            OPENRESTY_IMAGE=$(cat /tmp/workspace/var/circle-build-num) \
+            BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num) \
             make deploy
 
 
