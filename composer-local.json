@@ -4,6 +4,5 @@
 		"greenpeace/planet4-master-theme" : "dev-develop",
 		"greenpeace/planet4-plugin-blocks" : "dev-develop",
 		"greenpeace/planet4-plugin-migrated-urls" : "0.0.1"
-	},
-
+	}
 }
